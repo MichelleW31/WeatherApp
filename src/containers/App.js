@@ -30,6 +30,7 @@ const App = () => {
       });
   };
   useEffect(() => {
+    //gets location of user
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setCurrentCity);
     }

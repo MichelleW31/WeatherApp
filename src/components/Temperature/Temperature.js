@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Temperature.module.scss";
+import Icon from "../Icon/Icon";
 
 const Temperature = ({ weatherData }) => {
   const { name, main, weather } = weatherData;
@@ -24,6 +25,7 @@ const Temperature = ({ weatherData }) => {
             {weather[0].description}
           </h3>
         </div>
+        <Icon weather={weather} />
       </div>
     </section>
   );

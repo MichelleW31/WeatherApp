@@ -1,0 +1,13 @@
+.CurrentTemperatureContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rem;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 641px) {
+  .CurrentTemperatureContainer {
+    margin-top: 0;
+  }
+}
