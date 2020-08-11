@@ -16,6 +16,23 @@
     color: $purple;
     font-weight: bold;
   }
+
+  .CityInput {
+    border: none;
+    border-radius: 4px;
+    margin-right: 1rem;
+    padding: 0.5rem;
+  }
+
+  .SubmitButton {
+    background: $purple;
+    border: none;
+    border-radius: 4px;
+    color: $white;
+    font-family: $mont;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
 }
 
 @media only screen and (min-width: 641px) {
@@ -33,6 +50,35 @@
 
     .CityCopy {
       font-size: 0.5rem;
+    }
+
+    .CityInputContainer {
+      display: flex;
+      align-items: center;
+    }
+
+    .CityInput {
+      border: none;
+      border-radius: 15px;
+      margin-right: 1rem;
+      padding: 0.3rem;
+    }
+
+    .Error {
+      color: $error;
+      font-size: 1rem;
+      padding-top: 10px;
+      text-align: left;
+    }
+
+    .SubmitButton {
+      background: $purple;
+      border: none;
+      border-radius: 15px;
+      color: $white;
+      font-family: $mont;
+      font-size: 0.4rem;
+      padding: 0.3rem;
     }
   }
 }

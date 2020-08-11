@@ -6,19 +6,45 @@ import FiveDayForecast from "../components/FiveDayForecast/FiveDayForecast";
 import axios from "axios";
 
 const App = () => {
+  let [error, setError] = useState("");
   let [step, setStep] = useState(0);
   let [weatherData, setWeatherData] = useState(null);
   let [forecastList, setForecastList] = useState([]);
+  let [showInput, setshowInput] = useState(false);
 
-  const setCurrentCity = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+  const isError = (city, errorCode) => {
+    if (city === "") {
+      setError("Please enter a city.");
+      return true;
+    } else if (errorCode === 404) {
+      //need to fix this error handling. Not receiving the error codes yet
+      setError("City not found. Please enter valid city.");
+      return true;
+    } else {
+      setError("");
+      return false;
+    }
+  };
+
+  const setCurrentCity = (position, city) => {
+    let latitude;
+    let longitude;
+    let url;
+
+    if (position === null) {
+      if (!isError(city)) {
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial
+        `;
+      } else return;
+    } else {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial
+    `;
+    }
 
     axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial
-          `
-      )
+      .get(url)
       .then((response) => {
         if (response.status > 400) {
           throw response;
@@ -29,7 +55,7 @@ const App = () => {
         getFiveDayForecast(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        isError(error.response.status);
       });
   };
 
@@ -49,14 +75,18 @@ const App = () => {
         setForecastList(response.data.list);
       })
       .catch((error) => {
-        console.log(error);
+        isError(error.response.status);
       });
   };
 
   useEffect(() => {
     //gets location of user
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setCurrentCity);
+      navigator.geolocation.getCurrentPosition(setCurrentCity, function (
+        error
+      ) {
+        if (error.code == error.PERMISSION_DENIED) setshowInput(true);
+      });
     }
   }, []);
 
@@ -80,7 +110,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header weatherData={weatherData} />
+      <Header
+        weatherData={weatherData}
+        showInput={showInput}
+        setCurrentCity={setCurrentCity}
+        error={error}
+      />
       {weatherData !== null && (
         <section className="sub-navigation">
           <ul>
@@ -105,6 +140,7 @@ const App = () => {
       )}
 
       {stateManager()}
+      {error !== "" && <p className="error">{error}</p>}
     </div>
   );
 };
