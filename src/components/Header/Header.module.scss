@@ -1,0 +1,38 @@
+@import "../../variables.scss";
+
+.HeaderContainer {
+  background: $background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+
+  .HeaderCopy {
+    font-size: 2rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .CityName {
+    color: $purple;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  .HeaderContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+
+    .HeaderCopy {
+      font-size: 1rem;
+      padding-bottom: 0;
+    }
+
+    .CityCopy {
+      font-size: 0.5rem;
+    }
+  }
+}
