@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Header from "../components/Header/Header";
 import CurrentTemperature from "../components/CurrentTemperature/CurrentTemperature";
+import FiveDayForecast from "../components/FiveDayForecast/FiveDayForecast";
 import axios from "axios";
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
           throw response;
         }
         console.log(response.data);
+        setForecastList(response.data.list);
       })
       .catch((error) => {
         console.log(error);
@@ -64,6 +66,13 @@ const App = () => {
         return <p className="default-copy">Fetching your current weather...</p>;
       case 1:
         return <CurrentTemperature weatherData={weatherData} />;
+      case 2:
+        return (
+          <FiveDayForecast
+            name={weatherData.name}
+            forecastList={forecastList}
+          />
+        );
       default:
         return <p className="default-copy">Fetching your current weather...</p>;
     }
