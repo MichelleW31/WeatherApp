@@ -1,0 +1,61 @@
+@import "../../variables.scss";
+
+.TemperatureContainer {
+  background: $tabcolor;
+  border-radius: 4px;
+
+  -webkit-box-shadow: 2px 9px 17px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 9px 17px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 9px 17px 0px rgba(0, 0, 0, 0.4);
+  padding: 0.6rem;
+  width: 80%;
+
+  .CopyAndImage {
+    align-items: center;
+    display: flex;
+  }
+
+  .TemperatureCopy {
+    flex-basis: 60%;
+  }
+
+  .MainTemperature {
+    color: $purple;
+    font-size: 4.5rem;
+  }
+
+  .FeelsLikeTemperature {
+    font-size: 1.2rem;
+    margin-bottom: 0.1rem;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .TemperatureDescription {
+    text-transform: capitalize;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  .TemperatureContainer {
+    width: 60%;
+
+    .MainTemperature {
+      font-size: 4.2rem;
+    }
+
+    .FeelsLikeTemperature {
+      font-size: 0.9rem;
+    }
+
+    .TemperatureDescription {
+      font-size: 0.7rem;
+    }
+
+    .WeatherLocationCopy {
+      font-size: 1rem;
+    }
+  }
+}

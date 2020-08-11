@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Header from "../components/Header/Header";
+import CurrentTemperature from "../components/CurrentTemperature/CurrentTemperature";
 import axios from "axios";
 
 const App = () => {
@@ -34,6 +35,17 @@ const App = () => {
     }
   }, []);
 
+  const stateManager = () => {
+    switch (step) {
+      case 0:
+        return <p className="default-copy">Fetching your current weather...</p>;
+      case 1:
+        return <CurrentTemperature weatherData={weatherData} />;
+      default:
+        return <p className="default-copy">Fetching your current weather...</p>;
+    }
+  };
+
   return (
     <div className="App">
       <Header />
@@ -59,6 +71,8 @@ const App = () => {
           </ul>
         </section>
       )}
+
+      {stateManager()}
     </div>
   );
 };
