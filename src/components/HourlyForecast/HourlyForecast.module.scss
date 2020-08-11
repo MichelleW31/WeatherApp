@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+
+.HourlyForecastContainer {
+  background: $tabcolor;
+  border: 2px solid $background;
+  border-radius: 2px;
+  flex-basis: 13%;
+  padding: 0.2rem;
+  width: 10%;
+}
+
+@media only screen and (min-width: 641px) {
+  .HourlyForecastContainer {
+  }
+}
