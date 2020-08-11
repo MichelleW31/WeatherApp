@@ -80,7 +80,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header weatherData={weatherData} />
       {weatherData !== null && (
         <section className="sub-navigation">
           <ul>
