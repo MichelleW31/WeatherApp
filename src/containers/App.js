@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import axios from "axios";
 
 const App = () => {
+  let [step, setStep] = useState(0);
   let [weatherData, setWeatherData] = useState(null);
 
   const setCurrentCity = (position) => {
@@ -19,7 +20,9 @@ const App = () => {
         if (response.status > 400) {
           throw response;
         }
-        console.log(response.data);
+
+        setWeatherData(response.data);
+        setStep(1);
       })
       .catch((error) => {
         console.log(error);
@@ -34,6 +37,28 @@ const App = () => {
   return (
     <div className="App">
       <Header />
+      {weatherData !== null && (
+        <section className="sub-navigation">
+          <ul>
+            <li
+              className={step === 1 ? "active" : null}
+              onClick={() => {
+                setStep(1);
+              }}
+            >
+              Current Temperature
+            </li>
+            <li
+              className={step === 2 ? "active" : null}
+              onClick={() => {
+                setStep(2);
+              }}
+            >
+              5 Day Forecast
+            </li>
+          </ul>
+        </section>
+      )}
     </div>
   );
 };

@@ -4,3 +4,49 @@
   color: $white;
   font-family: $mont;
 }
+
+.sub-navigation {
+  padding: 0 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+  ul {
+    display: flex;
+    justify-content: center;
+
+    li {
+      background: $tabcolor;
+      border-radius: 0 0 3px 3px;
+      font-size: 1.1rem;
+      list-style: none;
+      margin-right: 0.7rem;
+      padding: 0.4rem 0.5rem;
+    }
+
+    li:hover {
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    background: $activetab;
+  }
+}
+
+@media only screen and (min-width: 641px) {
+  .App {
+    .sub-navigation {
+      padding: 0 1rem 0.5rem;
+      margin-bottom: 1.5rem;
+      ul {
+        display: flex;
+        justify-content: flex-start;
+
+        li {
+          font-size: 0.5rem;
+          list-style: none;
+          margin-right: 0.5rem;
+          padding: 0.2rem 0.5rem;
+        }
+      }
+    }
+  }
+}
