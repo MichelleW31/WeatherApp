@@ -7,6 +7,7 @@ import axios from "axios";
 const App = () => {
   let [step, setStep] = useState(0);
   let [weatherData, setWeatherData] = useState(null);
+  let [forecastList, setForecastList] = useState([]);
 
   const setCurrentCity = (position) => {
     const latitude = position.coords.latitude;
@@ -24,11 +25,32 @@ const App = () => {
 
         setWeatherData(response.data);
         setStep(1);
+        getFiveDayForecast(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const getFiveDayForecast = (data) => {
+    const { id } = data;
+
+    axios
+      .get(
+        ` https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial
+          `
+      )
+      .then((response) => {
+        if (response.status > 400) {
+          throw response;
+        }
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     //gets location of user
     if (navigator.geolocation) {
