@@ -1,12 +1,11 @@
 @import "../../variables.scss";
 
 .HourlyForecastContainer {
-  background: $tabcolor;
+  background: #969799;
   border: 2px solid $background;
   border-radius: 2px;
-  flex-basis: 13%;
-  padding: 0.2rem;
-  width: 10%;
+  flex-basis: 25%;
+  padding: 0.7rem;
 
   .Date {
     font-size: 0.8rem;
@@ -16,13 +15,51 @@
   .Time {
     font-size: 0.6rem;
   }
+
+  img {
+    width: 100%;
+  }
 }
 
-@media only screen and (min-width: 641px) {
+@media only screen and (max-width: 641px) {
   .HourlyForecastContainer {
     .Date {
       font-size: 0.5rem;
       margin-bottom: 0.1rem;
+    }
+
+    .Time {
+      font-size: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .HourlyForecastContainer {
+    flex-basis: 50%;
+
+    .Date {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .Time {
+      font-size: 0.9rem;
+    }
+
+    .MainTemperature {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .HourlyForecastContainer {
+    flex-basis: 12.5%;
+
+    .Date {
+      font-size: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .Time {

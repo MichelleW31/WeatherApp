@@ -85,7 +85,7 @@ const App = () => {
       navigator.geolocation.getCurrentPosition(setCurrentCity, function (
         error
       ) {
-        if (error.code == error.PERMISSION_DENIED) setshowInput(true);
+        if (error.code === error.PERMISSION_DENIED) setshowInput(true);
       });
     }
   }, []);
