@@ -8,14 +8,24 @@ const FiveDayForecast = ({ name, forecastList }) => {
   );
 
   const splitArray = (array) => {
-    let newForecastArray = [];
-    let arrayCopy = [...array];
-    while (arrayCopy.length > 0) {
-      //not sure about this logic yet. May need to compare dates
-      newForecastArray.push(arrayCopy.splice(0, 8));
-    }
+    let newForecastArray = [...array];
 
-    return newForecastArray;
+    newForecastArray.map((forecast) => {
+      forecast.formattedDate = new Date(forecast.dt * 1000).toDateString();
+    });
+
+    let group = newForecastArray.reduce((total, currentValue) => {
+      console.log("a", currentValue);
+      console.log("r", total);
+      total[currentValue.formattedDate] = [
+        ...(total[currentValue.formattedDate] || []),
+        currentValue,
+      ];
+      return total;
+    }, []);
+    console.log("group", group);
+
+    // return newForecastArray;
   };
 
   return (
@@ -25,7 +35,8 @@ const FiveDayForecast = ({ name, forecastList }) => {
         <span className={styles.CityName}>{name}</span>
       </h2>
       <div className={styles.FiveDayForecast}>
-        {splitArray(forecastList).map(getForecast)}
+        {splitArray(forecastList)}
+        {/* .map(getForecast)} */}
       </div>
     </div>
   );

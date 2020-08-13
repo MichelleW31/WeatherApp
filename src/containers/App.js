@@ -71,7 +71,6 @@ const App = () => {
         if (response.status > 400) {
           throw response;
         }
-        console.log(response.data);
         setForecastList(response.data.list);
       })
       .catch((error) => {
