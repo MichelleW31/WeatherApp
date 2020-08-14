@@ -9,7 +9,8 @@ const DailyForecast = ({ forecast }) => {
 
   return (
     <div className={styles.DailyForecastContainer}>
-      {forecast.map(getHourly)}
+      {/* {forecast.map(getHourly)} */}
+      DailyForecast
     </div>
   );
 };
