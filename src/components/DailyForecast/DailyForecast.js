@@ -3,14 +3,9 @@ import HourlyForecast from "../HourlyForecast/HourlyForecast";
 import styles from "./DailyForecast.module.scss";
 
 const DailyForecast = ({ forecast }) => {
-  const getHourly = (hourly) => (
-    <HourlyForecast key={hourly.dt_txt} hourly={hourly} />
-  );
-
   return (
     <div className={styles.DailyForecastContainer}>
-      {/* {forecast.map(getHourly)} */}
-      DailyForecast
+      <div>DailyForecast</div>
     </div>
   );
 };

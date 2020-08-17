@@ -1,9 +1,11 @@
 @import "../../variables.scss";
 
 .HourlyForecastContainer {
+  align-items: center;
   background: #969799;
   border: 2px solid $background;
   border-radius: 2px;
+  display: flex;
   flex-basis: 25%;
   padding: 0.7rem;
 

@@ -64,13 +64,15 @@ const App = () => {
 
     axios
       .get(
-        ` https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial
+        ` https://api.openweathermap.org/data/2.5/forecast/daily?id=${id}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=imperial&cnt=10
           `
       )
       .then((response) => {
         if (response.status > 400) {
           throw response;
         }
+
+        console.log(response.data);
         setForecastList(response.data.list);
       })
       .catch((error) => {

@@ -6,8 +6,9 @@ const HourlyForecast = ({ hourly }) => {
   const { dt, main, weather } = hourly;
 
   const convertDateandTime = (date, conversion) => {
+    const universalDate = new Date(date * 1000).toUTCString();
     const newDate = new Date(date * 1000);
-    if (conversion === "date") return newDate.toDateString();
+    if (conversion === "date") return universalDate.slice(0, -13);
     if (conversion === "time") return newDate.toLocaleTimeString();
   };
 
